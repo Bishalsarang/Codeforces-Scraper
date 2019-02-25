@@ -9,8 +9,34 @@ TODO
 2. Downloading editorials
 """
 
-print("The starting and ending contest number separated by space")
-start, end = map(int, input().split())
+
+
+print("  _____          _       __                            _____            _            _   ")
+print(" / ____|        | |     / _|                          / ____|          | |          | |  ")
+print("| |     ___   __| | ___| |_ ___  _ __ ___ ___        | |     ___  _ __ | |_ ___  ___| |_ ")
+print("| |    / _ \ / _` |/ _ \  _/ _ \| '__/ __/ _ \       | |    / _ \| '_ \| __/ _ \/ __| __|")
+print("| |___| (_) | (_| |  __/ || (_) | | | (_|  __/       | |___| (_) | | | | ||  __/\__ \ |_ ")
+print(" \_____\___/ \__,_|\___|_| \___/|_|  \___\___|        \_____\___/|_| |_|\__\___||___/\__|")
+
+print("                            _____                                      ")
+print("                           / ____|                                     ")
+print("                          | (___   ___ _ __ __ _ _ __  _ __   ___ _ __ ")
+print("                           \___ \ / __| '__/ _` | '_ \| '_ \ / _ \ '__|")
+print("                           ____) | (__| | | (_| | |_) | |_) |  __/ |   ")
+print("                          |_____/ \___|_|  \__,_| .__/| .__/ \___|_|   ")
+print("                                                | |   | |              ")
+print("                                                |_|   |_|                   ")
+print("                                                            Author: Bishal Sarangkoti(sarangbishal.github.io)")
+
+print("\nThe starting and ending contest number separated by space")
+start, end = 1, 1
+try:
+    start, end = map(int, input().split())
+except Exception as e:
+    print("Please supply two lower and upper id for contests")
+    exit()
+if start > end:
+    start, end = end, start
 
 if not os.path.exists("Downloaded PDFs"):
     os.makedirs("Downloaded PDFs")
@@ -35,7 +61,7 @@ for contest_num in range(start, end + 1):
         continue
     contest_title = "".join(re.findall(header_pattern, html.text))
     contest_title = re.sub(invalid_character,"", contest_title)
-    print("Converting contest{}".format(contest_title))
+    print("Converting contest {}".format(contest_title))
     file_name = DIR + contest_title + ".pdf"
 
     if os.path.exists(file_name):
