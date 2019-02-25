@@ -14,15 +14,21 @@ Usage:
 pip install requests
 pip install pdfkit
 pip install wkhtmltopdf
-python scrapper.py```
-<br>
+python scrapper.py
+```
+
 
 Note for Windows Users:
 Download wkhtmltopdf from above url and set the path in scrapper.py file accordingly
 
 Screenshots
+
 ![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/sc.JPG)
 
 <hr>
+
+![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/linux.JPG)
+<hr>
+
 
 ![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/Capture.JPG)
