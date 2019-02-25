@@ -1,3 +1,4 @@
+
 # Codeforce-Contests-Scrapper
 A simple scrapper made in python for the purpose of downloading codeforce contests as pdf
 
@@ -8,4 +9,9 @@ Requirements:
 3. requests
 
 Usage:
-python scrapper.py
+```python scrapper.py```
+<br>
+
+
+Screenshots
+![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/Capture.JPG)
