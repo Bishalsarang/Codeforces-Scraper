@@ -10,9 +10,15 @@ Requirements:
 3. requests
 
 Usage:
-```python scrapper.py```
+```
+pip install requests
+pip install pdfkit
+pip install wkhtmltopdf
+python scrapper.py```
 <br>
 
+Note for Windows Users:
+Download wkhtmltopdf from above url and set the path in scrapper.py file accordingly
 
 Screenshots
 ![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/sc.JPG)
