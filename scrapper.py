@@ -20,7 +20,7 @@ DIR = "Downloaded PDFs/"
 
 #Regex Pattern for contest name
 header_pattern =  re.compile(r'<div style="text-align: center; font-size: 1\.8rem; margin-bottom: 0\.5em;"\s*class="caption">(.+)</div>')
-
+invalid_character = re.compile(r'&|;|-|/|$|<|>|\*|\?|\||"|:|\\')
 for contest_num in range(start, end + 1):
     get_url = BASE_URL + str(contest_num) + "/problems"
 
@@ -34,8 +34,10 @@ for contest_num in range(start, end + 1):
     if re.match(not_found_pattern, html.text):
         continue
     contest_title = "".join(re.findall(header_pattern, html.text))
+    contest_title = re.sub(invalid_character,"", contest_title)
     print("Converting contest{}".format(contest_title))
     file_name = DIR + contest_title + ".pdf"
+
     if os.path.exists(file_name):
         print("Contest {} already exists".format(contest_title))
         continue
