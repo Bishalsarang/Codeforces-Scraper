@@ -14,4 +14,8 @@ Usage:
 
 
 Screenshots
+![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/sc.JPG)
+
+<hr>
+
 ![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/Capture.JPG)
