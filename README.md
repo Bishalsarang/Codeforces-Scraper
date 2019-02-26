@@ -3,6 +3,8 @@
 A simple scrapper made in python for the purpose of downloading codeforce contests as pdf <br>
 [Sample PDF](https://drive.google.com/file/d/1dWMhj5KySMQNa9gSAJBG_vX2Svm2985Z/view?usp=sharing) for CF Beta Round 13
 
+You  can download pdfs from all codeforces contest currently upto Codeforces Round #542 from [here](https://drive.google.com/open?id=1bvspBHcORvqBGyXzhD5TR1HHlOORMCK6)
+
 
 Requirements:
 1. [wkhtmltopdf](https://wkhtmltopdf.org/)
