@@ -6,7 +6,6 @@ import re
 
 """
 TODO 
-1. Handle Cases if contest doesn't exist
 2. Downloading editorials
 """
 
@@ -29,7 +28,7 @@ print("                                                | |   | |              ")
 print("                                                |_|   |_|                   ")
 print("                                                            Author: Bishal Sarangkoti(sarangbishal.github.io)")
 
-print("\nThe starting and ending contest number separated by space")
+print("\nPlease enter the starting and ending contest number separated by space")
 
 def isLinux():
     return platform.system() == "Linux"
@@ -51,16 +50,14 @@ DIR = "Downloaded PDFs/"
 
 #Regex Pattern for contest name
 header_pattern =  re.compile(r'<div style="text-align: center; font-size: 1\.8rem; margin-bottom: 0\.5em;"\s*class="caption">(.+)</div>')
-
 invalid_character = re.compile(r'&|;|-|/|$|<|>|\*|\?|\||"|:|\\')
-for contest_num in range(start, end + 1):
-    get_url = BASE_URL + str(contest_num) + "/problems"
 
-   
+for contest_num in range(start, end + 1):
+    get_url = BASE_URL + str(contest_num) + "/problems" 
 
     html = requests.get(BASE_URL + str(contest_num) + "/problems")
-    print("\n\n")
-    print(get_url)
+    print("\n")
+    print("Fetching {}".format(get_url))
     not_found_pattern = r'< div class ="message" > No such contest < / div >'
     if re.match(not_found_pattern, html.text):
         continue
@@ -69,11 +66,18 @@ for contest_num in range(start, end + 1):
     #Remove invalid characters
     contest_title = re.sub(invalid_character,"", contest_title)
     print("Converting contest {}".format(contest_title))
+    
     file_name = DIR + contest_title + ".pdf"
+
+    #If contest id is invalid
+    if file_name == DIR + ".pdf":
+        print("Contest with contest id {} doesn't exist".format(contest_num))
+        continue
 
     if os.path.exists(file_name):
         print("Contest {} already exists".format(contest_title))
         continue
+    
     if isLinux():
         pdfkit.from_url(get_url, file_name)
     else:
