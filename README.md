@@ -5,21 +5,26 @@ A simple scrapper made in python for the purpose of downloading codeforce contes
 
 
 Requirements:
-1. wkhtmltopdf[https://wkhtmltopdf.org/]
+1. [wkhtmltopdf](https://wkhtmltopdf.org/)
 2. pdfkit
 3. requests
 
-Usage:
+Install Dependencies:
 ```
 pip install requests
 pip install pdfkit
 pip install wkhtmltopdf
+```
+Usage:
+```
 python scrapper.py
 ```
 
-
 Note for Windows Users:
-Download wkhtmltopdf from above url and set the path in scrapper.py file accordingly
+Download wkhtmltopdf executable from [here](https://wkhtmltopdf.org/) and set the path path of executable in scrapper.py file accordingly
+by updating <em>path_wkhtmlpdf</em> to path of <strong>wkhtmltopdf.exe</strong>
+
+![Config](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/config.JPG)
 
 Screenshots
 
