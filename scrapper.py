@@ -4,12 +4,6 @@ import platform
 import requests
 import re
 
-"""
-TODO 
-2. Downloading editorials
-"""
-
-
 
 print("  _____          _       __                            _____            _            _   ")
 print(" / ____|        | |     / _|                          / ____|          | |          | |  ")
@@ -30,8 +24,27 @@ print("                                                            Author: Bisha
 
 print("\nPlease enter the starting and ending contest number separated by space")
 
-def isLinux():
+
+def is_linux():
+    """
+    Identify the current platform
+    :return: True if Linux else False
+    """
     return platform.system() == "Linux"
+
+
+def remove_unwanted(name):
+    """
+    Function to remove characters from contest like VK Cup 2015  Раунд 3
+    https://codeforces.com/contest/541/problems
+    """
+    # Valid Name in Contest
+    pattern = re.compile('[a-z0-9\s\-()[\]\.,\+#]+', re.IGNORECASE)
+    for i, elem in enumerate(name):
+        if not re.match(pattern, elem):
+            return name[: i]
+    return name
+
 
 start, end = 1, 1
 try:
@@ -48,28 +61,26 @@ if not os.path.exists("Downloaded PDFs"):
 BASE_URL = "https://codeforces.com/contest/"
 DIR = "Downloaded PDFs/"
 
-#Regex Pattern for contest name
-header_pattern =  re.compile(r'<div style="text-align: center; font-size: 1\.8rem; margin-bottom: 0\.5em;"\s*class="caption">(.+)</div>')
+# Regex Pattern for contest name
+header_pattern = re.compile(r'<div style="text-align: center; font-size: 1\.8rem; margin-bottom: 0\.5em;"\s*class="caption">(.+)</div>')
 invalid_character = re.compile(r'&|;|-|/|$|<|>|\*|\?|\||"|:|\\')
 
 for contest_num in range(start, end + 1):
     get_url = BASE_URL + str(contest_num) + "/problems" 
 
-    html = requests.get(BASE_URL + str(contest_num) + "/problems")
+    html = requests.get(get_url)
     print("\n")
     print("Fetching {}".format(get_url))
-    not_found_pattern = r'< div class ="message" > No such contest < / div >'
-    if re.match(not_found_pattern, html.text):
-        continue
+
     contest_title = "".join(re.findall(header_pattern, html.text))
 
-    #Remove invalid characters
-    contest_title = re.sub(invalid_character,"", contest_title)
+    # Remove invalid characters
+    contest_title = re.sub(invalid_character, "", contest_title)
     print("Converting contest {}".format(contest_title))
     
     file_name = DIR + contest_title + ".pdf"
 
-    #If contest id is invalid
+    # If contest id is invalid
     if file_name == DIR + ".pdf":
         print("Contest with contest id {} doesn't exist".format(contest_num))
         continue
@@ -78,10 +89,19 @@ for contest_num in range(start, end + 1):
         print("Contest {} already exists".format(contest_title))
         continue
     
-    if isLinux():
-        pdfkit.from_url(get_url, file_name)
+    if is_linux():
+        try:
+            pdfkit.from_url(get_url, file_name)
+        except:
+            file_name = DIR + remove_unwanted(contest_title) + ".pdf"
+            pdfkit.from_url(get_url, file_name)
     else:
-        #Path to wkhtmltopdf
+        # Path to wkhtmltopdf
         path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
         config = pdfkit.configuration(wkhtmltopdf = path_wkthmltopdf)
-        pdfkit.from_url(get_url, file_name, configuration = config)
+        try:
+            pdfkit.from_url(get_url, file_name, configuration=config)
+        except Exception as e:
+            file_name = DIR + remove_unwanted(contest_title) + ".pdf"
+            pdfkit.from_url(get_url, file_name, configuration=config)
+
