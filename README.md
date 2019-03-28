@@ -6,36 +6,37 @@ A simple scrapper made in python for the purpose of downloading codeforce contes
 You  can download pdfs from all codeforces contest currently upto Codeforces Round #542 from [here](https://drive.google.com/open?id=1bvspBHcORvqBGyXzhD5TR1HHlOORMCK6)
 
 
-Requirements:
+### Requirements:
 1. [wkhtmltopdf](https://wkhtmltopdf.org/)
 2. pdfkit
 3. requests
 4. bs4
 
 
-Install Dependencies:
+### Install Dependencies:
 ```
 pip install requests
 pip install pdfkit
 pip install wkhtmltopdf
+pip install bs4
 ```
-Usage:
+### Usage:
 ```
 python scrapper.py
 ```
 
-Note for Windows Users:
+### Note for Windows Users:
 Download wkhtmltopdf executable from [here](https://wkhtmltopdf.org/) and set the path path of executable in scrapper.py file accordingly
 by updating <em>path_wkhtmlpdf</em> to path of <strong>wkhtmltopdf.exe</strong>
 
 ![Config](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/config.JPG)
 
 
-# Updates:
+### Updates:
 1. Feature to download contest based on contest ID
 2. Feature to download problemset base on ratings, tags (In progress)
 
-Screenshots
+### Screenshots
 
 ![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/sc.JPG)
 
