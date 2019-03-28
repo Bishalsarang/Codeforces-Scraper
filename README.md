@@ -10,6 +10,8 @@ Requirements:
 1. [wkhtmltopdf](https://wkhtmltopdf.org/)
 2. pdfkit
 3. requests
+4. bs4
+
 
 Install Dependencies:
 ```
@@ -27,6 +29,11 @@ Download wkhtmltopdf executable from [here](https://wkhtmltopdf.org/) and set th
 by updating <em>path_wkhtmlpdf</em> to path of <strong>wkhtmltopdf.exe</strong>
 
 ![Config](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/config.JPG)
+
+
+# Updates:
+1. Feature to download contest based on contest ID
+2. Feature to download problemset base on ratings, tags (In progress)
 
 Screenshots
 
