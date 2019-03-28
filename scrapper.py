@@ -1,8 +1,7 @@
-import pdfkit
 import os
-import platform
 import requests
 import re
+import save_as_pdf
 
 
 print("  _____          _       __                            _____            _            _   ")
@@ -25,32 +24,11 @@ print("                                                            Author: Bisha
 print("\nPlease enter the starting and ending contest number separated by space")
 
 
-def is_linux():
-    """
-    Identify the current platform
-    :return: True if Linux else False
-    """
-    return platform.system() == "Linux"
-
-
-def remove_unwanted(name):
-    """
-    Function to remove characters from contest like VK Cup 2015  Раунд 3
-    https://codeforces.com/contest/541/problems
-    """
-    # Valid Name in Contest
-    pattern = re.compile('[a-z0-9\s\-()[\]\.,\+#]+', re.IGNORECASE)
-    for i, elem in enumerate(name):
-        if not re.match(pattern, elem):
-            return name[: i]
-    return name
-
-
 start, end = 1, 1
 try:
     start, end = map(int, input().split())
 except Exception as e:
-    print("Please supply two lower and upper id for contests")
+    print("Please supply two numbers lower and upper id for contests")
     exit()
 if start > end:
     start, end = end, start
@@ -88,20 +66,8 @@ for contest_num in range(start, end + 1):
     if os.path.exists(file_name):
         print("Contest {} already exists".format(contest_title))
         continue
-    
-    if is_linux():
-        try:
-            pdfkit.from_url(get_url, file_name)
-        except:
-            file_name = DIR + remove_unwanted(contest_title) + ".pdf"
-            pdfkit.from_url(get_url, file_name)
-    else:
-        # Path to wkhtmltopdf
-        path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
-        config = pdfkit.configuration(wkhtmltopdf = path_wkthmltopdf)
-        try:
-            pdfkit.from_url(get_url, file_name, configuration=config)
-        except Exception as e:
-            file_name = DIR + remove_unwanted(contest_title) + ".pdf"
-            pdfkit.from_url(get_url, file_name, configuration=config)
+
+    save_as_pdf.write(DIR, file_name, contest_title, get_url)
+
+
 
