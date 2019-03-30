@@ -29,7 +29,7 @@ def contest_download_mode():
         print("Converting contest {}".format(contest_title))
 
         file_name = DIR + contest_title + ".pdf"
-
+        print(file_name)
         # If contest id is invalid
         if file_name == DIR + ".pdf":
             print("Contest with contest id {} doesn't exist".format(contest_num))
@@ -70,11 +70,13 @@ def problem_download_mode(crawl_url, maximum_problems):
             # Remove invalid characters
             problem_title = re.sub(invalid_character, "", problem_title)
 
-            print("Converting problem {}".format(problem_title))
+            print("Converting problem {}".format(problem_title[2:]))
 
             problem_title = str(downloaded )+ ". " + problem_title[2:]
             filename = DIR + problem_title + ".pdf"
-            print(filename)
+            if os.path.exists(filename):
+                print("Problem {} already exists".format(problem_title))
+                continue
             problem_html = html_fix.fix_broken_links(a)
             save_as_pdf.write_pdf(DIR, filename, problem_title, problem_html)
 
@@ -108,7 +110,7 @@ DIR = "Downloaded PDFs/"
 start, end = 1, 1
 if mode[0].upper() == "C":
     BASE_URL = "https://codeforces.com/contest/"
-    DIR = "Downloaded PDFs/"
+    DIR = "Downloaded PDFs/Contests/"
     if not os.path.exists(DIR):
         os.makedirs(DIR)
     if args["lower"] is not None:
