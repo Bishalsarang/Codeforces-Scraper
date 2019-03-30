@@ -24,16 +24,20 @@ def remove_unwanted(name):
             return name[: i]
     return name
 
-def write(DIR, file_name, contest_title, get_url):
+
+def write_pdf(DIR, file_name, title, html):
     if is_linux():
         try:
-            pdfkit.from_url(get_url, file_name)
+            pdfkit.from_string(html, file_name, configuration=config)
         except:
-            file_name = DIR + remove_unwanted(contest_title) + ".pdf"
-            pdfkit.from_url(get_url, file_name)
+            file_name = DIR + remove_unwanted(title) + ".pdf"
+            pdfkit.from_string(html, file_name, configuration=config)
     else:
         try:
-            pdfkit.from_url(get_url, file_name, configuration=config)
+            pdfkit.from_string(html, file_name, configuration=config)
         except Exception as e:
-            file_name = DIR + remove_unwanted(contest_title) + ".pdf"
-            pdfkit.from_url(get_url, file_name, configuration=config)
+            file_name = DIR + remove_unwanted(title) + ".pdf"
+            pdfkit.from_string(html, file_name, configuration=config)
+
+
+
