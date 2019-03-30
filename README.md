@@ -1,6 +1,7 @@
 
 # Codeforce-Contests-Scrapper
-A simple scrapper made in python for the purpose of downloading codeforce contests as pdf <br>
+A simple scrapper made in python for the purpose of downloading codeforce contests and problems as pdf <br>
+It allows downloading problem based on contest id, rating, difficulty adn tags
 [Sample PDF](https://drive.google.com/file/d/1dWMhj5KySMQNa9gSAJBG_vX2Svm2985Z/view?usp=sharing) for CF Beta Round 13
 
 You  can download pdfs from all codeforces contest currently upto Codeforces Round #542 from [here](https://drive.google.com/open?id=1bvspBHcORvqBGyXzhD5TR1HHlOORMCK6)
@@ -30,32 +31,38 @@ View help to know what switch -m, -l and -c are
 ```
 python scrapper.py -m contest -l 300 -u 302
 ```
-3. Download problems with tag dp
+3. Download  problems with rating 1200-1300 order by solved
+```
+python scrapper.py -m p  -t 1200-1300 -o solved 
+```
+4. Download problems with tag dp
 ```
 python scrapper.py -m p -t dp
 ```
-4. Download problems with tag dp ordered by solved
+5. Download problems with tag dp and binary search ordered by solved<br>
+<i>Note:</i> Enclose tags inside quotes if it is more than 1 word
 ```
 python scrapper.py -m p -t dp -o solved
+python scrapper.py -m p -t "binary search" -o solved
 ```
-5. Download all problems with tag dp ordered by rating
+6. Download all problems with tag dp ordered by rating
 ```
 python scrapper.py -m p -t dp -o rating
 ```
-6. Download all problems with tag dp ordered by solved in ascending order <br>
+7. Download all problems with tag dp ordered by solved in ascending order <br>
 Change to -asc False to download in descending order 
 ```
 python scrapper.py -m p -t dp -o solved -asc True
 ```
-6. Download maximum of 10 problems with tag dp ordered by solved in ascending order 
+8. Download maximum of 10 problems with tag dp ordered by solved in ascending order 
 ```
 python scrapper.py -m p -t dp -o solved -asc True -n 10
 ```
-7. Download maximum of 10 problems with any tag ordered by solved in ascending order 
+9. Download maximum of 10 problems with any tag ordered by solved in ascending order 
 ```
 python scrapper.py -m p  -o solved -asc True -n 10
 ```
-8. Download maximum of 10 problems with any tag ordered by rating in ascending order 
+10. Download maximum of 10 problems with any tag ordered by rating in ascending order 
 ```
 python scrapper.py -m p  -o rating -asc True -n 10
 ```
