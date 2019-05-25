@@ -1,3 +1,4 @@
 1. Fix image download 
 2. Download tutorials
 3. Improve directory structure 
+4. Add GUI
