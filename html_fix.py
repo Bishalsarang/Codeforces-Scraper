@@ -1,27 +1,39 @@
 import pdfkit
 import requests
 import re
-import  bs4
+import bs4
 
 
-def remove_tags(html, val):
+def remove_tags(html, val, element_type):
+    """
+        Removes unwanted tags like sidebar, leaderboard, menus
+    """
+
+    def remove_by_id(soup, id_value, tag="div"):
+        """"
+            Removes html tag by id
+        """
+        if soup.find(tag, id=id_value) is not None:
+            soup.find(tag, id=id_value).decompose()
+        return soup
+
+    def remove_by_class(soup, class_value, tag="div"):
+        """
+            Removes html tag by class
+        """
+        for div in soup.find_all(tag, {"class": class_value}):
+            div.decompose()
+        return soup
+
     soup = bs4.BeautifulSoup(html, "html.parser")
-    if val == "sidebar":
-        if soup.find('div', id="sidebar") is not None:
-            soup.find('div', id="sidebar").decompose()
-    elif val == "roundbox menu-box":
-        for div in soup.find_all("div", {"class": "roundbox menu-box"}):
-            div.decompose()
-    elif val == "second-level-menu":
-        for div in soup.find_all("div", {"class": "second-level-menu"}):
-            div.decompose()
-    elif val == "footer":
-        if soup.find('div', id="footer") is not None:
-            soup.find('div', id="footer").decompose()
-    return str(soup)
+    if element_type == "id":
+        return str(remove_by_id(soup, id_value=val))
+    if element_type == "class":
+        return str(remove_by_class(soup, class_value=val))
+
 
 def fix_broken_links(LINK):
-    html = requests.get(LINK, stream = True).content
+    html = requests.get(LINK, stream=True).content
 
     to_replace = [b'href="//',
                   b'src="//',
@@ -39,27 +51,21 @@ def fix_broken_links(LINK):
                     br'src="https://codeforces.com/predownloaded/'
                     ]
 
-
     # Fix css and js
     # Take css and js from cf server
     for i in range(len(to_replace)):
         html = re.sub(to_replace[i], replace_with[i], html)
 
-
-    # with open("arko.html", "wb") as f:
-    #    f.write(html)
-
     # Decode html bytes to string using UTF-8
     html = html.decode(encoding="utf-8")
 
-    tags_to_remove = ["sidebar",
-                      "roundbox menu-box",
-                      "footer",
-                      "second-level-menu",
+    tags_to_remove = [("id", "sidebar"),
+                      ("class", "roundbox menu-box"),
+                      ("id", "footer"),
+                      ("class", "second-level-menu"),
                       ]
 
-    for element in tags_to_remove:
-        html = remove_tags(html, val=element)
+    for element_type, element in tags_to_remove:
+        html = remove_tags(html, val=element, element_type=element_type)
 
-    return  html
-
+    return html

@@ -1,8 +1,10 @@
 import pdfkit
 import platform
+import re
 
 # Path to wkhtmltopdf for Windows Machine
 path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+#path_wkthmltopdf = r'.\wkhtmltopdf\bin\wkhtmltopdf.exe'
 config = pdfkit.configuration(wkhtmltopdf = path_wkthmltopdf)
 
 def is_linux():
