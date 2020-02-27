@@ -83,12 +83,12 @@ by updating <em>path_wkhtmlpdf</em> to path of <strong>wkhtmltopdf.exe</strong>
 
 ### Screenshots
 
-![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/sc.JPG)
+![Screenshots](https://github.com/Bishalsarang/Codeforces-Scrapper/blob/master/sc.JPG)
 
 <hr>
 
-![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/linux.JPG)
+![Screenshots](https://github.com/Bishalsarang/Codeforces-Scrapper/blob/master/linux.JPG)
 <hr>
 
 
-![Screenshots](https://github.com/sarangbishal/Codeforce-Contests-Scrapper/blob/master/Capture.JPG)
+![Screenshots](https://github.com/Bishalsarang/Codeforces-Scrapper/blob/master/Capture.JPG)
