@@ -1,5 +1,5 @@
 
-# Codeforce-Scrapper
+# Codeforce-Scraper
 A simple scrapper made in python for the purpose of downloading codeforce contests and problems as pdf <br>
 It allows downloading problem based on contest id, rating, difficulty adn tags
 [Sample PDF](https://drive.google.com/file/d/1dWMhj5KySMQNa9gSAJBG_vX2Svm2985Z/view?usp=sharing) for CF Beta Round 13
